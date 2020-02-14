@@ -81,7 +81,7 @@ int main(void){
             mbed_stats_cpu_get(  &cpuinfo);
 
             // Construct strings to send
-            x = sprintf(cpu_buff,"{\"uptime\":%d,\"idle_time\":%d,\"sleep_time\":%d,\"deep_sleep_time\":%d}",
+            x = sprintf(cpu_buff,"{\"uptime\":%llu,\"idle_time\":%llu,\"sleep_time\":%llu,\"deep_sleep_time\":%llu}",
                                 cpuinfo.uptime,
                                 cpuinfo.idle_time,
                                 cpuinfo.sleep_time,
@@ -142,7 +142,8 @@ int main(void){
             printf("\r\n Sending System Data: '%s'\r\n",sys_buff);
             sys->sendData(sys_buff,strlen(sys_buff));
         }
-        wait(10);
+        
+        thread_sleep_for(10000);
 
     }
 
